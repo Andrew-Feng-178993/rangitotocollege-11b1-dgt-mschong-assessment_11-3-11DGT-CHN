@@ -1,4 +1,6 @@
 print("Hello world!")
-glewjnfcalkdsc
 print("hello")
 print("I like pizza")
+print("I like ice cream")
+print("I like chocolate")
+print("I like cookies")
