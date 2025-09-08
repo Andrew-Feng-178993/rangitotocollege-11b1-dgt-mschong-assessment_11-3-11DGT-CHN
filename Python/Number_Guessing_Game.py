@@ -1,59 +1,49 @@
 import random
 
+def guess_number(high_number):
+    target = random.randint(1, high_number)
+    attempts = 0
+    
+    while True:
+        try:
+            guess = int(input(f"Guess a number between 1 and {high_number}: "))
+            if guess < 1 or guess > high_number:
+                print(f"Please enter a number between 1 and {high_number}.")
+                continue
+            if guess < target:
+                attempts += 1
+                print("Too low! Try again.")
+            elif guess > target:
+                attempts += 1
+                print("Too high! Try again.")
+            else:
+                print(f"Congratulations! You've guessed the number in {attempts} attempts.")
+                break
+        except ValueError:
+            print("Invalid input! Please enter another valid number.")
+    
 print("WELCOME TO ANDREW'S GUESSING GAME!!!")
-list = []
-
-easy_level_num = 100
-medium_level_num = 1000
-hard_level_num = 10000
-extra_hard_level_num = 100000
 
 while True:
-    level = input("Pick a level of difficulty: Easy, Medium, Hard, Extra Hard.\n")
-
+    level = input("Pick a difficulty level: Easy, Medium, Hard, Extra Hard.\n").capitalize()
     if level == "Easy":
-        random_num = random.randint(1, easy_level_num)
-        print(random_num)
-        
-        break
+        guess_number(100)
     elif level == "Medium":
-        random_num = random.randint(1, medium_level_num)
-        print(random_num)
-      
-        break
+        guess_number(1000)
     elif level == "Hard":
-        random_num = random.randint(1, hard_level_num)
-        print(random_num)
-   
-        break
+        guess_number(10000)
     elif level == "Extra Hard":
-        random_num = random.randint(1, extra_hard_level_num)
-        print(random_num)
-   
-        break
+        guess_number(100000)
     else:
-        print("That is not a valid level! Please pick again.")
-   
-guess = int(input("Please guess a number:\n"))
-while True:
-    ###if guess < 1 or guess > limit:
-        ###print("That is not within the valid range!")
-    if guess < random_num:
-        list.append("lol")
-        print("The number you are looking for is higher!")
-        guess = int(input("Please guess a number:\n"))
+        print("Invalid level! Please choose another level.")
         
-    elif guess > random_num:
-        list.append("lol")
-        print("The number you are looking for is lower!")
-        guess = int(input("Please guess a number:\n"))
         
-    elif guess == random_num:
-        list.append("lol")
-        print(f"Congratulations! You guessed the number in {len(list)} guesses!")
-        
+    again = input("Do you want to play again?: ").lower()
+    if again != 'yes':
+        print("Thanks for playing!")
+        break
 
 
 
-
-
+ 
+ 
