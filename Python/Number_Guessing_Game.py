@@ -1,6 +1,14 @@
 import random
 
-def guess_number(high_number):
+# Keep top scores separately for each difficulty
+scores = {
+    "Easy": [],
+    "Medium": [],
+    "Hard": [],
+    "Extra Hard": []
+}
+
+def guess_number(high_number, level_name):
     target = random.randint(1, high_number)
     attempts = 0
     
@@ -18,11 +26,22 @@ def guess_number(high_number):
                 print("Too high! Try again.")
             else:
                 attempts += 1
-                print(f"Congratulations! You've guessed the number in {attempts} attempts.")
+                print(f"🎉 Congratulations! You've guessed the number in {attempts} attempts. 🎉\n")
                 break
         except ValueError:
-            print("Invalid input! Please enter another valid number.")
+            print("Invalid input! Please enter a valid number.")
     
+    # store score in the correct level
+    scores[level_name].append(attempts)
+    scores[level_name].sort()
+    scores[level_name] = scores[level_name][:3]  # keep only top 3
+    
+    # print leaderboard for that level
+    print(f"🏆 Top 3 Scores for Level: {level_name} 🏆")
+    for i, score in enumerate(scores[level_name], 1):
+        print(f"{i}. {score} attempts")
+    print()
+
 print("WELCOME TO ANDREW'S GUESSING GAME!!!\n")
 
 print("Levels:")
@@ -34,19 +53,18 @@ print("Extra Hard: 1 - 100000\n")
 while True:
     level = input("Pick a difficulty level: Easy, Medium, Hard, Extra Hard.\n").capitalize()
     if level == "Easy":
-        guess_number(100)
+        guess_number(100, "Easy")
     elif level == "Medium":
-        guess_number(1000)
+        guess_number(1000, "Medium")
     elif level == "Hard":
-        guess_number(10000)
-    elif level == "Extra Hard":
-        guess_number(100000)
+        guess_number(10000, "Hard")
+    elif level == "Extra hard":  # careful: capitalize() makes it "Extra hard"
+        guess_number(100000, "Extra Hard")
     else:
         print("Invalid level! Please choose another level.")
-        
+        continue  # go back to asking for level
         
     again = input("Do you want to play again?: ").lower()
     if again != 'yes':
         print("Ok, thank you for playing! :)")
         break
-
