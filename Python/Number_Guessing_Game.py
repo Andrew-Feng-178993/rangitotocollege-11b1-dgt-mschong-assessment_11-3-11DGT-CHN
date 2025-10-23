@@ -1,3 +1,5 @@
+"""My number guessing game."""
+
 import random
 
 # Keep top scores separately for each difficulty

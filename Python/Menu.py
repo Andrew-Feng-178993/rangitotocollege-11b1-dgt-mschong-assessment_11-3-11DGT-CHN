@@ -1,3 +1,5 @@
+"""My menu."""
+
 import subprocess
 import sys
 import os

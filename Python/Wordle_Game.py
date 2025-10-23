@@ -1,3 +1,5 @@
+"""My wordle game."""
+
 import random
 
 EASY_WORDS = [
